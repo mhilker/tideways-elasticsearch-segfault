@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - ./:/app:rw
+
+  tideways-daemon:
+    build:
+      context: .
+      dockerfile: ./docker/tideways-daemon/Dockerfile
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    ports:
+      - "32000:80"
+    depends_on:
+      - php
+    volumes:
+      - ./public:/app/public:ro
+
+  elasticsearch:
+    build:
+      context: .
+      dockerfile: ./docker/elasticsearch/Dockerfile
+    environment:
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"

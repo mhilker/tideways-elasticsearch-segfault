@@ -1,0 +1,12 @@
+{
+    "name": "mhilker/tideways-elasticsearch-segfault",
+    "require": {
+        "elasticsearch/elasticsearch": "^7.6"
+    },
+    "autoload": {
+        "files": [
+            "public/app.php",
+            "public/tideways.php"
+        ]
+    }
+}
